@@ -1,6 +1,7 @@
 body {
     font-family: "Merriweather", serif;
     background-color: #000000;
+
 }
 
 .container-fluid {
@@ -13,19 +14,21 @@ body {
 
 #users {
     padding-left: 0;
-    background-color: #4d4d4d;
+    /* background-color: #4d4d4d; */
 }
 
 #users li {
     text-transform: capitalize;
     margin-bottom: 10px;
-    background-color: aliceblue;
+    border: 1px solid gray;
+    padding: 10px;
+    font-size: 1.2em;
 }
 
 #messages-container {
     flex-grow: 1;
     overflow-y: auto;
-    background-color: cadetblue;
+    background-color: rgb(196, 196, 196);
 }
 
 #messages {
@@ -42,4 +45,43 @@ body {
 
 .info-message {
     color: #888;
+}
+
+#send-button {
+    background-color: rgb(100, 160, 100);
+    border: none;
+    width: 50%;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #000;
+}
+
+
+#messages-container {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.message {
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.user-message {
+    background-color: #4caf50;
+    color: white;
+    align-self: flex-start;
+}
+
+.other-message {
+    background-color: #2196f3;
+    color: white;
+    align-self: flex-end;
 }
