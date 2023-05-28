@@ -24,20 +24,29 @@ body {
 
 .users-container {
     flex: 0 0 25%;
-    background-color: #336ca5;
-    border-right: 1px solid #dee2e6;
+    background-color: #6096B4;
+    border-bottom: 2px solid #000;
     overflow-y: auto;
 }
 
-.users-container li {
+#users li {
     text-transform: capitalize;
+    font-size: 1.4em;
+    color: #000;
+    padding-left: 10px;
 }
 
 .messages-container {
     flex: 1;
-    background-color: #c8ceff;
+    background-color: #93BFCF;
     overflow-y: auto;
     color: #000;
+}
+
+.title {
+    font-size: 1.5em;
+    color: #000;
+    font-weight: 700;
 }
 
 #messages {
@@ -49,6 +58,42 @@ body {
     border-top: 1px solid #dee2e6;
 }
 
+.system-message {
+    color: #7a7a7a;
+    font-size: 0.8em;
+
+}
+
 .send-button {
-    border-radius: 0;
+    border-radius: 7px;
+    background-color: green;
+    border: none;
+    width: 35%;
+    color: #000;
+    font-weight: 700;
+}
+
+.send-button:hover {
+    border-radius: 10px;
+    background-color: #000;
+    border: none;
+    width: 35%;
+    color: green;
+    font-weight: 700;
+
+}
+
+#users {
+    list-style: none;
+    padding: 0;
+}
+
+.timestamp {
+    font-size: 8px;
+    color: #888;
+}
+
+#users li {
+    margin-bottom: 5px;
+    text-transform: capitalize;
 }

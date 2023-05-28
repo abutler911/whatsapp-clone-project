@@ -20,13 +20,21 @@ io.on("connection", (socket) => {
     };
     activeUsers.set(socket.id, user);
 
+    const timestamp = new Date().getTime();
     io.emit("userList", Array.from(activeUsers.values()));
+    io.emit("message", {
+      username: "ChatApp Bot",
+      message: `${username} joined the chat`,
+      timestamp: timestamp,
+      systemMessage: true,
+    });
   });
 
   socket.on("chatMessage", (message) => {
     const user = activeUsers.get(socket.id);
     if (user) {
-      io.emit("message", { username: user.username, message });
+      const timestamp = new Date().getTime();
+      io.emit("message", { username: user.username, message, timestamp });
     }
   });
 
@@ -34,7 +42,15 @@ io.on("connection", (socket) => {
     const user = activeUsers.get(socket.id);
     if (user) {
       activeUsers.delete(socket.id);
+
+      const timestamp = new Date().getTime();
       io.emit("userList", Array.from(activeUsers.values()));
+      io.emit("message", {
+        username: "ChatApp Bot",
+        message: `${user.username} left the chat`,
+        timestamp: timestamp,
+        systemMessage: true,
+      });
     }
   });
 });
