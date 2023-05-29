@@ -1,0 +1,15 @@
+    Private Messaging: Allow users to send private messages to each other.
+    Emojis and Stickers: Implement support for emojis and stickers to make conversations more expressive.
+    Message Editing and Deleting: Enable users to edit or delete their messages within a certain time window.
+    Message Reactions: Allow users to react to messages with emojis or predefined reactions.
+    Image and File Sharing: Add functionality to share images, files, or documents within the chat.
+    
+    
+    Message Search: Enable users to search for specific messages or keywords within the chat history.
+    Message Formatting: Add support for text formatting options like bold, italic, underline, or code snippets.
+    User Avatars: Allow users to upload or choose avatars to personalize their chat profiles.
+    User Statuses: Show online/offline status indicators for users and display their last active timestamp.
+    
+    Dark Mode: Implement a dark mode theme option for the app interface.
+    Chat Room/Channel Creation: Allow users to create and join different chat rooms or channels based on specific topics or interests.
+    Chat Moderation: Add moderation features like message flagging, blocking users, or reporting inappropriate content.

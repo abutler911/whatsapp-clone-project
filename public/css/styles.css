@@ -46,6 +46,12 @@ body {
 
 }
 
+.typing-indicator {
+    color: #5f5f5f;
+    font-size: 0.9em;
+
+}
+
 #users li {
     text-transform: capitalize;
     font-size: 1.4em;

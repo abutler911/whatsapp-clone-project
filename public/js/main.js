@@ -7,6 +7,9 @@ const messages = document.getElementById("messages");
 const username = prompt("Enter your username:");
 socket.emit("userJoined", username);
 
+let typing = false;
+let typingTimeout;
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const message = input.value;
@@ -16,12 +19,25 @@ form.addEventListener("submit", (e) => {
   }
 });
 
+input.addEventListener("input", () => {
+  if (!typing) {
+    typing = true;
+    socket.emit("typing");
+  }
+
+  clearTimeout(typingTimeout);
+  typingTimeout = setTimeout(() => {
+    typing = false;
+    socket.emit("stopTyping");
+  }, 1000); // Adjust the delay as desired
+});
+
 socket.on("chatMessage", (message) => {
-  const timestamp = new Date(); // Get the current timestamp
+  const timestamp = new Date();
   const chatData = {
     username: username,
     message: message,
-    timestamp: timestamp, // Use the Date object directly as the timestamp value
+    timestamp: timestamp,
   };
   socket.emit("message", chatData);
 });
@@ -30,7 +46,7 @@ socket.on("message", (chatData) => {
   const li = document.createElement("li");
   const username = chatData.username.toUpperCase();
   const message = chatData.message;
-  const timestamp = new Date(chatData.timestamp); // Create a new Date object from the received timestamp
+  const timestamp = new Date(chatData.timestamp);
   const timestampString = timestamp.toLocaleTimeString();
 
   if (chatData.systemMessage) {
@@ -74,3 +90,26 @@ socket.on("userLeft", (username) => {
   li.classList.add("info-message");
   messages.appendChild(li);
 });
+
+socket.on("typing", (username) => {
+  // Display typing indicator for the user
+  const typingIndicator = document.getElementById("typing-indicator");
+  typingIndicator.textContent = `${username
+    .charAt(0)
+    .toUpperCase()}${username.slice(1)} is typing...`;
+});
+
+socket.on("stopTyping", () => {
+  // Hide typing indicator
+  const typingIndicator = document.getElementById("typing-indicator");
+  typingIndicator.textContent = "";
+});
+
+socket.on("notification", (notificationData) => {
+  showNotification(notificationData.sender, notificationData.message);
+});
+
+function showNotification(sender, message) {
+  const notificationSound = new Audio("/media/ding.mp3");
+  notificationSound.play();
+}
