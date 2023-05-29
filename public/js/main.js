@@ -44,19 +44,44 @@ socket.on("chatMessage", (message) => {
 
 socket.on("message", (chatData) => {
   const li = document.createElement("li");
-  const username = chatData.username.toUpperCase();
+  const senderUsername = chatData.username.toUpperCase();
   const message = chatData.message;
   const timestamp = new Date(chatData.timestamp);
   const timestampString = timestamp.toLocaleTimeString();
 
-  if (chatData.systemMessage) {
-    li.innerHTML = `<strong class="system-message">${username}: </strong>${message} <span class="timestamp">${timestampString}</span>`;
-    li.classList.add("system-message");
+  const messageContainer = document.createElement("div");
+  messageContainer.classList.add("message-container");
+
+  const senderName = document.createElement("strong");
+  senderName.classList.add("message-sender");
+  senderName.textContent = senderUsername;
+
+  const messageText = document.createElement("span");
+  messageText.classList.add("message-text");
+  messageText.textContent = message;
+
+  const messageTimestamp = document.createElement("span");
+  messageTimestamp.classList.add("timestamp");
+  messageTimestamp.textContent = timestampString;
+
+  if (senderUsername === username.toUpperCase()) {
+    messageContainer.classList.add("sent-message");
+    messageContainer.appendChild(senderName);
+    messageContainer.appendChild(messageText);
+    messageContainer.appendChild(messageTimestamp);
   } else {
-    li.innerHTML = `<strong>${username}: </strong>${message} <span class="timestamp">${timestampString}</span>`;
+    messageContainer.classList.add("received-message");
+    messageContainer.appendChild(senderName);
+    messageContainer.appendChild(messageText);
+    messageContainer.appendChild(messageTimestamp);
   }
 
+  li.appendChild(messageContainer);
   messages.appendChild(li);
+
+  if (chatData.receiver === username) {
+    showNotification(chatData.sender, chatData.message);
+  }
 });
 
 socket.on("userList", (users) => {
@@ -66,6 +91,11 @@ socket.on("userList", (users) => {
   users.forEach((user) => {
     const listItem = document.createElement("li");
     listItem.textContent = user.username;
+
+    if (user.username === username) {
+      listItem.classList.add("current-user");
+    }
+
     userList.appendChild(listItem);
   });
 });
