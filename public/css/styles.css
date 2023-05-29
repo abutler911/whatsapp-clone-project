@@ -1,5 +1,5 @@
 body {
-    background-color: #24292e;
+    background-color: #ebebeb;
     color: #fff;
     font-family: "Merriweather", serif;
 }
@@ -8,13 +8,23 @@ body {
     height: 100vh;
 }
 
-.bg-light {
-    background-color: #588cc0;
+.main-title {
+    font-size: 3em;
+    color: #000;
+    text-align: center;
+    font-weight: 700;
+    background-color: #0d0a0b;
+    background-image: linear-gradient(180deg, #afadae 0%, #009fc2 74%);
+    border-radius: 7px;
+    padding: 3px;
+    margin-top: 10px;
+    border: 1px solid gray;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 
-.h-100 {
-    height: 100%;
-}
+
+
 
 .chat-container {
     display: flex;
@@ -24,9 +34,16 @@ body {
 
 .users-container {
     flex: 0 0 25%;
-    background-color: #6096B4;
-    border-bottom: 2px solid #000;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #6a93cb;
+    background-image: linear-gradient(0deg, #6a93cb 0%, #a4bfef 74%);
     overflow-y: auto;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    margin-top: 20px;
+    border: 1px solid gray;
+
+
 }
 
 #users li {
@@ -38,9 +55,16 @@ body {
 
 .messages-container {
     flex: 1;
-    background-color: #93BFCF;
+    background-color: #6a93cb;
     overflow-y: auto;
     color: #000;
+    border-radius: 7px;
+    margin-top: 10px;
+    min-height: 300px;
+    border: 1px solid gray;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
 }
 
 .title {
@@ -54,23 +78,26 @@ body {
 }
 
 .message-input {
-    border-radius: 0;
-    border-top: 1px solid #dee2e6;
+    border-radius: 7px;
+    border: 1px solid #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 
 .system-message {
-    color: #7a7a7a;
+    color: #5f5f5f;
     font-size: 0.8em;
 
 }
 
 .send-button {
     border-radius: 7px;
-    background-color: green;
+    background-color: #6a93cb;
     border: none;
     width: 35%;
     color: #000;
     font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .send-button:hover {
@@ -78,19 +105,33 @@ body {
     background-color: #000;
     border: none;
     width: 35%;
-    color: green;
+    color: #6a93cb;
     font-weight: 700;
 
 }
 
-#users {
-    list-style: none;
-    padding: 0;
+#users li {
+    opacity: 0;
+    list-style: square;
+    animation: fade-in 0.7s ease-in-out forwards;
+    -webkit-animation: fade-in 0.7s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .timestamp {
     font-size: 8px;
-    color: #888;
+    color: #000000;
 }
 
 #users li {
